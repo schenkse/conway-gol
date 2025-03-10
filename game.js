@@ -15,6 +15,8 @@ const setupGameBoard = function() {
             let cell = document.createElement('td');
             cell.setAttribute('id', 'cell_' + i + '_' + j);
             cell.setAttribute('class', 'dead');
+            cell.onmouseover = cellMouseOverHandler;
+            cell.onmouseleave = cellMouseLeaveHandler;
             cell.onclick = cellClickHandler;
             cell.style.setProperty('width', cellSize + 'px');
             cell.style.setProperty('height', cellSize + 'px');
@@ -38,6 +40,7 @@ const removeGameBoard = function() {
 const cellClickHandler = function() {
     // Deactivate while simulation is running
     if (isRunning) return;
+    this.classList.remove('active-cell');
     const [cellstring, row, col] = this.id.split('_');
     const cellState = this.getAttribute('class');
     // Invert cell based on current state
@@ -49,6 +52,18 @@ const cellClickHandler = function() {
         grid[row][col] = 1;
     }
     return;
+}
+
+const cellMouseOverHandler = function() {
+    // Deactivate while simulation is running
+    if (isRunning) return;
+    this.classList.add('active-cell');
+}
+
+const cellMouseLeaveHandler = function() {
+    // Deactivate while simulation is running
+    if (isRunning) return;
+    this.classList.remove('active-cell');
 }
 
 const createGrid = function() {

@@ -3,6 +3,7 @@ body {
 }
 
 #gameBoard {
+    display: grid;
     border: 1px solid black;
     width: 640px;
 }
@@ -16,8 +17,17 @@ td {
     border: 1px solid black;
 }
 
+.active-cell {
+    opacity: 0.1;
+}
+
 .dead {
     background-color: transparent;
+}
+
+.dead.active-cell {
+    background-color: black;
+    opacity: 0.1;
 }
 
 .live {
