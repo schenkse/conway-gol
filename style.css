@@ -45,16 +45,6 @@ td {
     border-radius: 10px;
 }
 
-.numCells {
-    width: 30px;
-}
-
-.gameSettingsContainer {
-    display: inline-block;
-    padding: 1rem 1rem;
-    vertical-align: middle;
-}
-
 .dead.longhorn {
     background-color: orange;
     opacity: 0.5;

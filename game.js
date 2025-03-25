@@ -144,40 +144,6 @@ const iterateStep = function() {
     return;
 }
 
-
-// Longhorn figure
-const setupGameBoardLonghorn = function() {
-    const gameBoard = document.querySelector('#gameBoard');
-    if (!gameBoard) {
-        console.error("Error: No division element for game board.")
-    }
-    // TODO: remove hardcoded gameboard width
-    const cellSize = Math.floor(640 / numCols);
-    let cellGrid = document.createElement('table');
-    const iMidpoint = Math.floor(numRows / 2);
-    const jMidpoint = Math.floor(numCols / 2);
-    for (let i = 0; i < numRows; i++) {
-        let cellRow = document.createElement('tr');
-        for (let j = 0; j < numCols; j++) {
-            let cell = document.createElement('td');
-            cell.setAttribute('id', 'cell_' + i + '_' + j);
-            if (i >= iMidpoint - 2 && i <= iMidpoint + 3 && j >= jMidpoint - 4 && j <= jMidpoint + 4) {
-                cell.classList.add('longhorn');
-            }
-            cell.classList.add('dead');
-            cell.onmouseover = cellMouseOverHandler;
-            cell.onmouseleave = cellMouseLeaveHandler;
-            cell.onclick = cellClickHandler;
-            cell.style.setProperty('width', cellSize + 'px');
-            cell.style.setProperty('height', cellSize + 'px');
-            cellRow.appendChild(cell);
-        }
-        cellGrid.appendChild(cellRow);
-    }
-    gameBoard.appendChild(cellGrid);
-    return;
-}
-
 // Pentadecathlon figure
 const setupGameBoardFigure = function(pattern) {
     const gameBoard = document.querySelector('#gameBoard');
@@ -223,8 +189,8 @@ const setupGameBoardFigure = function(pattern) {
 }
 
 
-let numRows = document.querySelector('#yCells').value;
-let numCols = document.querySelector('#xCells').value;
+let numRows = 10;
+let numCols = 10;
 let isRunning = false;
 let grid = createGrid();
 let correctPattern;
