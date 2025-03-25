@@ -85,9 +85,11 @@ const updateGridView = function() {
         for (let j = 0; j < numCols; j++) {
             let cell = document.querySelector('#cell_' + i + '_' + j);
             if (grid[i][j] === 0) {
-                cell.setAttribute('class', 'dead');
+                cell.classList.remove('live');
+                cell.classList.add('dead');
             } else {
-                cell.setAttribute('class', 'live');
+                cell.classList.remove('dead');
+                cell.classList.add('live');
             }
         }
     }
@@ -160,7 +162,7 @@ const setupGameBoardLonghorn = function() {
             let cell = document.createElement('td');
             cell.setAttribute('id', 'cell_' + i + '_' + j);
             cell.setAttribute('class', 'dead');
-            if (i >= iMidpoint - 2 && i <= iMidpoint + 3 && j >= 3 && j <= 11) {
+            if (i >= iMidpoint - 2 && i <= iMidpoint + 3 && j >= jMidpoint - 4 && j <= jMidpoint + 4) {
                 cell.classList.add('longhorn');
             }
             cell.onmouseover = cellMouseOverHandler;
@@ -215,7 +217,7 @@ resetButton.addEventListener('click', () => {
     numRows = document.querySelector('#yCells').value;
     numCols = document.querySelector('#xCells').value;
     grid = createGrid();
-    setupGameBoard();
+    setupGameBoardLonghorn();
 })
 
 const timeSlider = document.querySelector('#timer');
