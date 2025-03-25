@@ -1,5 +1,6 @@
 let timer;
 let updateTime = 100;
+let iterationCount = 0;
 
 const setupGameBoard = function() {
     const gameBoard = document.querySelector('#gameBoard');
@@ -218,6 +219,7 @@ const countLiveNeighbours = function(row, col) {
 const iterateStep = function() {
     updateGrid();
     updateGridView();
+    iterationCount++;
     if (isRunning) {
         timer = setTimeout(iterateStep, updateTime);
     }
@@ -295,6 +297,7 @@ longhornButton.addEventListener('click', () => {
         numRows = 15;
         numCols = 15;
         updateTime = 500;
+        iterationCount = 0;
         removeGameBoard();
         setupGameBoardFigure('longhorn');
         grid = createGrid();
@@ -308,6 +311,7 @@ pentadecathlonButton.addEventListener('click', () => {
         numRows = 11;
         numCols = 18;
         updateTime = 500;
+        iterationCount = 0;
         removeGameBoard();
         setupGameBoardFigure('pentadecathlon');
         grid = createGrid();
@@ -321,6 +325,7 @@ pedestrianButton.addEventListener('click', () => {
         numRows = 50;
         numCols = 50;
         updateTime = 50;
+        iterationCount = 0;
         removeGameBoard();
         setupGameBoardFigure('pedestrian');
         grid = createGrid();
@@ -353,6 +358,7 @@ resetButton.addEventListener('click', () => {
     if (isRunning) return;
     isRunning = false;
     console.log('Resetting game.');
+    iterationCount = 0;
     removeGameBoard();
     playButton.textContent = 'Play';
     grid = createGrid();
