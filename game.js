@@ -44,11 +44,13 @@ const cellClickHandler = function() {
     const [cellstring, row, col] = this.id.split('_');
     const cellState = this.getAttribute('class');
     // Invert cell based on current state
-    if (cellState === 'live') {
-        this.setAttribute('class', 'dead');
+    if (cellState.includes('live')) {
+        this.classList.remove('live');
+        this.classList.add('dead');
         grid[row][col] = 0;
     } else {
-        this.setAttribute('class', 'live');
+        this.classList.remove('dead');
+        this.classList.add('live');
         grid[row][col] = 1;
     }
     return;
