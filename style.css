@@ -7,15 +7,19 @@ body {
     margin: auto;
 }
 
+#gameControls {
+    width: 680px;
+    margin: auto;
+}
+
 #gameBoard {
     display: grid;
-    border: 1px solid black;
     width: 640px;
 }
 
 table {
     background-color: white;
-    border-spacing: 0px;
+    border-spacing: 1px;
 }
 
 td {
