@@ -53,7 +53,6 @@ const cellClickHandler = function() {
         this.classList.add('live');
         grid[row][col] = 1;
     }
-    console.log("i=" + row + ", j=" + col);
     return;
 }
 
@@ -112,8 +111,6 @@ const correctGridLonghorn = function() {
     return grid;
 }
 
-//i >= iMidpoint - 1 && i <= iMidpoint + 1 && j >= jMidpoint -5 && j <= jMidpoint + 4
-
 const correctGridPentadecathlon = function() {
     const grid = [];
     for (let i = 0; i < numRows; i++) {
@@ -132,6 +129,33 @@ const correctGridPentadecathlon = function() {
     }
     grid[iMid + 1][jMid - 3] = 1;
     grid[iMid + 1][jMid + 2] = 1;
+    return grid;
+}
+
+const correctGridPedestrian = function() {
+    const grid = [];
+    for (let i = 0; i < numRows; i++) {
+        grid[i] = [];
+        for (let j = 0; j < numCols; j++) {
+            grid[i][j] = 0;
+        }
+    }
+    const iMid = Math.floor(numRows / 2);
+    const jMid = Math.floor(numCols / 2);
+    grid[iMid - 2][jMid - 4] = 1;
+    grid[iMid - 2][jMid - 1] = 1;
+    grid[iMid - 1][jMid + 1] = 1;
+    grid[iMid][jMid - 4] = 1;
+    grid[iMid][jMid] = 1;
+    grid[iMid][jMid + 2] = 1;
+    grid[iMid][jMid + 3] = 1;
+    grid[iMid + 1][jMid - 4] = 1;
+    grid[iMid + 1][jMid] = 1;
+    grid[iMid + 2][jMid - 4] = 1;
+    grid[iMid + 2][jMid - 2] = 1;
+    grid[iMid + 2][jMid - 1] = 1;
+    grid[iMid + 3][jMid - 4] = 1;
+    grid[iMid + 3][jMid - 2] = 1;
     return grid;
 }
 
@@ -300,7 +324,7 @@ pedestrianButton.addEventListener('click', () => {
         removeGameBoard();
         setupGameBoardFigure('pedestrian');
         grid = createGrid();
-        correctPattern = 'pedestrian';
+        correctPattern = correctGridPedestrian();
     }
 })
 
