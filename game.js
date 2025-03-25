@@ -179,11 +179,12 @@ const setupGameBoardLonghorn = function() {
 }
 
 // Pentadecathlon figure
-const setupGameBoardPentadecathlon = function() {
+const setupGameBoardFigure = function(pattern) {
     const gameBoard = document.querySelector('#gameBoard');
     if (!gameBoard) {
         console.error("Error: No division element for game board.")
     }
+    console.log("Setting up " + pattern + ".");
     // TODO: remove hardcoded gameboard width
     const cellSize = Math.floor(640 / numCols);
     let cellGrid = document.createElement('table');
@@ -194,8 +195,18 @@ const setupGameBoardPentadecathlon = function() {
         for (let j = 0; j < numCols; j++) {
             let cell = document.createElement('td');
             cell.setAttribute('id', 'cell_' + i + '_' + j);
-            if (i >= iMidpoint - 2 && i <= iMidpoint + 3 && j >= jMidpoint - 4 && j <= jMidpoint + 4) {
-                cell.classList.add('longhorn');
+            if (pattern === 'longhorn') {
+                if (i >= iMidpoint - 2 && i <= iMidpoint + 3 && j >= jMidpoint - 4 && j <= jMidpoint + 4) {
+                    cell.classList.add(pattern);
+                }
+            } else if (pattern === 'pentadecathlon') {
+                if (i >= iMidpoint - 1 && i <= iMidpoint + 1 && j >= jMidpoint -5 && j <= jMidpoint + 4) {
+                    cell.classList.add(pattern);
+                }
+            } else if (pattern === 'pedestrian') {
+                if (i >= iMidpoint - 2 && i <= iMidpoint + 3 && j >= jMidpoint - 4 && j <= jMidpoint + 3) {
+                    cell.classList.add(pattern);
+                }
             }
             cell.classList.add('dead');
             cell.onmouseover = cellMouseOverHandler;
@@ -216,6 +227,7 @@ let numRows = document.querySelector('#yCells').value;
 let numCols = document.querySelector('#xCells').value;
 let isRunning = false;
 let grid = createGrid();
+let correctPattern;
 
 const toggleControls = function() {
     const gameSettings = document.querySelectorAll('.gameSettings');
@@ -228,13 +240,39 @@ const toggleControls = function() {
 const longhornButton = document.querySelector('#longhorn');
 longhornButton.addEventListener('click', () => {
     if (!isRunning) {
-        console.log('Setting up longhorn.');
         numRows = 15;
         numCols = 15;
         updateTime = 500;
         removeGameBoard();
-        setupGameBoardLonghorn();
+        setupGameBoardFigure('longhorn');
         grid = createGrid();
+        correctPattern = 'longhorn';
+    }
+})
+
+const pentadecathlonButton = document.querySelector('#pentadecathlon');
+pentadecathlonButton.addEventListener('click', () => {
+    if (!isRunning) {
+        numRows = 11;
+        numCols = 18;
+        updateTime = 500;
+        removeGameBoard();
+        setupGameBoardFigure('pentadecathlon');
+        grid = createGrid();
+        correctPattern = 'pentadecathlon';
+    }
+})
+
+const pedestrianButton = document.querySelector('#pedestrian');
+pedestrianButton.addEventListener('click', () => {
+    if (!isRunning) {
+        numRows = 50;
+        numCols = 50;
+        updateTime = 50;
+        removeGameBoard();
+        setupGameBoardFigure('pedestrian');
+        grid = createGrid();
+        correctPattern = 'pedestrian';
     }
 })
 
@@ -263,5 +301,3 @@ resetButton.addEventListener('click', () => {
     playButton.textContent = 'Play';
     grid = createGrid();
 })
-
-//window.onload = setupGameBoardLonghorn();
