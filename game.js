@@ -53,6 +53,7 @@ const cellClickHandler = function() {
         this.classList.add('live');
         grid[row][col] = 1;
     }
+    console.log("i=" + row + ", j=" + col);
     return;
 }
 
@@ -108,6 +109,29 @@ const correctGridLonghorn = function() {
     grid[iMid + 2][jMid - 1] = 1;
     grid[iMid + 2][jMid + 1] = 1;
     grid[iMid + 3][jMid] = 1;
+    return grid;
+}
+
+//i >= iMidpoint - 1 && i <= iMidpoint + 1 && j >= jMidpoint -5 && j <= jMidpoint + 4
+
+const correctGridPentadecathlon = function() {
+    const grid = [];
+    for (let i = 0; i < numRows; i++) {
+        grid[i] = [];
+        for (let j = 0; j < numCols; j++) {
+            grid[i][j] = 0;
+        }
+    }
+    const iMid = Math.floor(numRows / 2);
+    const jMid = Math.floor(numCols / 2);
+    grid[iMid - 1][jMid - 3] = 1;
+    grid[iMid - 1][jMid + 2] = 1;
+    for (let j = -5; j < 5; j++) {
+        if (j == -3 || j == 2) { continue; }
+        grid[iMid][jMid + j] = 1;
+    }
+    grid[iMid + 1][jMid - 3] = 1;
+    grid[iMid + 1][jMid + 2] = 1;
     return grid;
 }
 
@@ -263,7 +287,7 @@ pentadecathlonButton.addEventListener('click', () => {
         removeGameBoard();
         setupGameBoardFigure('pentadecathlon');
         grid = createGrid();
-        correctPattern = 'pentadecathlon';
+        correctPattern = correctGridPentadecathlon();
     }
 })
 
