@@ -79,6 +79,38 @@ const createGrid = function() {
     return grid;
 }
 
+const correctGridLonghorn = function() {
+    const grid = [];
+    for (let i = 0; i < numRows; i++) {
+        grid[i] = [];
+        for (let j = 0; j < numCols; j++) {
+            grid[i][j] = 0;
+        }
+    }
+    const iMid = Math.floor(numRows / 2);
+    const jMid = Math.floor(numCols / 2);
+    grid[iMid - 2][jMid - 3] = 1;
+    grid[iMid - 2][jMid - 2] = 1;
+    grid[iMid - 2][jMid + 2] = 1;
+    grid[iMid - 2][jMid + 3] = 1;
+    grid[iMid - 1][jMid - 4] = 1;
+    grid[iMid - 1][jMid - 1] = 1;
+    grid[iMid - 1][jMid + 1] = 1;
+    grid[iMid - 1][jMid + 4] = 1;
+    grid[iMid][jMid - 4] = 1;
+    grid[iMid][jMid - 3] = 1;
+    grid[iMid][jMid - 1] = 1;
+    grid[iMid][jMid + 1] = 1;
+    grid[iMid][jMid + 3] = 1;
+    grid[iMid][jMid + 4] = 1;
+    grid[iMid + 1][jMid - 1] = 1;
+    grid[iMid + 1][jMid + 1] = 1;
+    grid[iMid + 2][jMid - 1] = 1;
+    grid[iMid + 2][jMid + 1] = 1;
+    grid[iMid + 3][jMid] = 1;
+    return grid;
+}
+
 // Update visible grid
 const updateGridView = function() {
     for (let i = 0; i < numRows; i++) {
@@ -188,12 +220,18 @@ const setupGameBoardFigure = function(pattern) {
     return;
 }
 
+// compare two arrays
+// TODO this may be slow
+const compareArrays = function(array1, array2) {
+    return JSON.stringify(array1) === JSON.stringify(array2);
+}
 
 let numRows = 10;
 let numCols = 10;
 let isRunning = false;
 let grid = createGrid();
 let correctPattern;
+let isCorrect = false;
 
 const toggleControls = function() {
     const gameSettings = document.querySelectorAll('.gameSettings');
@@ -212,7 +250,7 @@ longhornButton.addEventListener('click', () => {
         removeGameBoard();
         setupGameBoardFigure('longhorn');
         grid = createGrid();
-        correctPattern = 'longhorn';
+        correctPattern = correctGridLonghorn();
     }
 })
 
@@ -245,6 +283,10 @@ pedestrianButton.addEventListener('click', () => {
 const playButton = document.querySelector('#play');
 playButton.addEventListener('click', () => {
     if (!isRunning) {
+        isCorrect = compareArrays(grid, correctPattern);
+        if (isCorrect) {
+            console.log("Congratulations, you found the correct pattern.");
+        }
         isRunning = true;
         console.log('Running game.');
         playButton.textContent = 'Pause';
