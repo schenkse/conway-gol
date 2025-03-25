@@ -58,3 +58,13 @@ td {
     background-color: orange;
     opacity: 0.5;
 }
+
+#longhorn {
+    background-color: orange;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color:#002ead;
+    transition: 0.7s;
+}

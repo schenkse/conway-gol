@@ -191,6 +191,17 @@ const toggleControls = function() {
     })
 }
 
+const longhornButton = document.querySelector('#longhorn');
+longhornButton.addEventListener('click', () => {
+    if (!isRunning) {
+        console.log('Setting up longhorn.');
+        numRows = 15;
+        numCols = 15;
+        removeGameBoard();
+        setupGameBoardLonghorn();
+    }
+})
+
 const playButton = document.querySelector('#play');
 playButton.addEventListener('click', () => {
     if (!isRunning) {
@@ -228,4 +239,4 @@ timeSlider.addEventListener('input', (event) => {
     timeOutput.textContent = updateTime;
 })
 
-window.onload = setupGameBoardLonghorn();
+//window.onload = setupGameBoardLonghorn();
