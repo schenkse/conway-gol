@@ -280,7 +280,9 @@ let numRows = 10;
 let numCols = 10;
 let isRunning = false;
 let grid = createGrid();
+let currentPattern;
 let correctPattern;
+let foundPatterns = new Set();
 let isCorrect = false;
 
 const toggleControls = function() {
@@ -301,6 +303,7 @@ longhornButton.addEventListener('click', () => {
         removeGameBoard();
         setupGameBoardFigure('longhorn');
         grid = createGrid();
+        currentPattern = 'longhorn';
         correctPattern = correctGridLonghorn();
     }
 })
@@ -315,6 +318,7 @@ pentadecathlonButton.addEventListener('click', () => {
         removeGameBoard();
         setupGameBoardFigure('pentadecathlon');
         grid = createGrid();
+        currentPattern = 'pentadecathlon';
         correctPattern = correctGridPentadecathlon();
     }
 })
@@ -329,6 +333,7 @@ pedestrianButton.addEventListener('click', () => {
         removeGameBoard();
         setupGameBoardFigure('pedestrian');
         grid = createGrid();
+        currentPattern = 'pedestrian';
         correctPattern = correctGridPedestrian();
     }
 })
@@ -338,7 +343,11 @@ playButton.addEventListener('click', () => {
     if (!isRunning) {
         isCorrect = compareArrays(grid, correctPattern);
         if (isCorrect) {
+            foundPatterns.add(currentPattern);
             console.log("Congratulations, you found the correct pattern.");
+            if (foundPatterns.size === 3) {
+                console.log("Congratulations, you have solved the puzzle.");
+            }
         }
         isRunning = true;
         console.log('Running game.');
@@ -357,6 +366,7 @@ const resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', () => {
     if (isRunning) return;
     isRunning = false;
+    foundPatterns.clear();
     console.log('Resetting game.');
     iterationCount = 0;
     removeGameBoard();
