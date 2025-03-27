@@ -1,6 +1,11 @@
 let timer;
 let updateTime = 100;
 let iterationCount = 0;
+const maxIterations = {
+    longhorn: 100,
+    pentadecathlon: 100,
+    pedestrian: 1000
+};
 
 const setupGameBoardPattern = function(pattern) {
     const gameBoard = document.querySelector('#gameBoard');
@@ -210,7 +215,7 @@ const iterateStep = function() {
     iterationCount++;
     // check if at least one cell is still alive
     const isLive = grid.flat().includes(1);
-    if (!isLive) {
+    if (!isLive || iterationCount > maxIterations[currentPattern]) {
         stopGame();
     }
     if (isRunning) {
