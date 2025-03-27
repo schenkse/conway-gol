@@ -215,7 +215,7 @@ const iterateStep = function() {
     iterationCount++;
     // check if at least one cell is still alive
     const isLive = grid.flat().includes(1);
-    if (!isLive || iterationCount > maxIterations[currentPattern]) {
+    if (!isLive || (isCorrect && iterationCount > maxIterations[currentPattern])) {
         stopGame();
     }
     if (isRunning) {
@@ -240,6 +240,7 @@ const compareArrays = function(array1, array2) {
 let numRows = 10;
 let numCols = 10;
 let isRunning = false;
+let isCorrect = false;
 let grid = createGrid();
 let currentPattern;
 let correctPattern;
@@ -293,7 +294,7 @@ pedestrianButton.addEventListener('click', () => {
 const playButton = document.querySelector('#play');
 playButton.addEventListener('click', () => {
     if (!isRunning) {
-        const isCorrect = compareArrays(grid, correctPattern);
+        isCorrect = compareArrays(grid, correctPattern);
         if (isCorrect) {
             foundPatterns.add(currentPattern);
             console.log("Congratulations, you found the correct pattern.");
