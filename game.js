@@ -2,20 +2,36 @@ let timer;
 let updateTime = 100;
 let iterationCount = 0;
 
-const setupGameBoard = function() {
+const setupGameBoardPattern = function(pattern) {
     const gameBoard = document.querySelector('#gameBoard');
     if (!gameBoard) {
         console.error("Error: No division element for game board.")
     }
+    console.log("Setting up " + pattern + ".");
     // TODO: remove hardcoded gameboard width
     const cellSize = Math.floor(640 / numCols);
     let cellGrid = document.createElement('table');
+    const iMidpoint = Math.floor(numRows / 2);
+    const jMidpoint = Math.floor(numCols / 2);
     for (let i = 0; i < numRows; i++) {
         let cellRow = document.createElement('tr');
         for (let j = 0; j < numCols; j++) {
             let cell = document.createElement('td');
             cell.setAttribute('id', 'cell_' + i + '_' + j);
-            cell.setAttribute('class', 'dead');
+            if (pattern === 'longhorn') {
+                if (i >= iMidpoint - 2 && i <= iMidpoint + 3 && j >= jMidpoint - 4 && j <= jMidpoint + 4) {
+                    cell.classList.add(pattern);
+                }
+            } else if (pattern === 'pentadecathlon') {
+                if (i >= iMidpoint - 1 && i <= iMidpoint + 1 && j >= jMidpoint -5 && j <= jMidpoint + 4) {
+                    cell.classList.add(pattern);
+                }
+            } else if (pattern === 'pedestrian') {
+                if (i >= iMidpoint - 2 && i <= iMidpoint + 3 && j >= jMidpoint - 4 && j <= jMidpoint + 3) {
+                    cell.classList.add(pattern);
+                }
+            }
+            cell.classList.add('dead');
             cell.onmouseover = cellMouseOverHandler;
             cell.onmouseleave = cellMouseLeaveHandler;
             cell.onclick = cellClickHandler;
@@ -226,47 +242,10 @@ const iterateStep = function() {
     return;
 }
 
-// Pentadecathlon figure
-const setupGameBoardFigure = function(pattern) {
-    const gameBoard = document.querySelector('#gameBoard');
-    if (!gameBoard) {
-        console.error("Error: No division element for game board.")
-    }
-    console.log("Setting up " + pattern + ".");
-    // TODO: remove hardcoded gameboard width
-    const cellSize = Math.floor(640 / numCols);
-    let cellGrid = document.createElement('table');
-    const iMidpoint = Math.floor(numRows / 2);
-    const jMidpoint = Math.floor(numCols / 2);
-    for (let i = 0; i < numRows; i++) {
-        let cellRow = document.createElement('tr');
-        for (let j = 0; j < numCols; j++) {
-            let cell = document.createElement('td');
-            cell.setAttribute('id', 'cell_' + i + '_' + j);
-            if (pattern === 'longhorn') {
-                if (i >= iMidpoint - 2 && i <= iMidpoint + 3 && j >= jMidpoint - 4 && j <= jMidpoint + 4) {
-                    cell.classList.add(pattern);
-                }
-            } else if (pattern === 'pentadecathlon') {
-                if (i >= iMidpoint - 1 && i <= iMidpoint + 1 && j >= jMidpoint -5 && j <= jMidpoint + 4) {
-                    cell.classList.add(pattern);
-                }
-            } else if (pattern === 'pedestrian') {
-                if (i >= iMidpoint - 2 && i <= iMidpoint + 3 && j >= jMidpoint - 4 && j <= jMidpoint + 3) {
-                    cell.classList.add(pattern);
-                }
-            }
-            cell.classList.add('dead');
-            cell.onmouseover = cellMouseOverHandler;
-            cell.onmouseleave = cellMouseLeaveHandler;
-            cell.onclick = cellClickHandler;
-            cell.style.setProperty('width', cellSize + 'px');
-            cell.style.setProperty('height', cellSize + 'px');
-            cellRow.appendChild(cell);
-        }
-        cellGrid.appendChild(cellRow);
-    }
-    gameBoard.appendChild(cellGrid);
+const stopGame = function() {
+    isRunning = false;
+    playButton.textContent = 'Play';
+    console.log("Pausing game.")
     return;
 }
 
@@ -283,15 +262,6 @@ let grid = createGrid();
 let currentPattern;
 let correctPattern;
 let foundPatterns = new Set();
-let isCorrect = false;
-
-const toggleControls = function() {
-    const gameSettings = document.querySelectorAll('.gameSettings');
-    resetButton.toggleAttribute('disabled');
-    gameSettings.forEach((item) => {
-        item.toggleAttribute('disabled');
-    })
-}
 
 const longhornButton = document.querySelector('#longhorn');
 longhornButton.addEventListener('click', () => {
@@ -301,7 +271,7 @@ longhornButton.addEventListener('click', () => {
         updateTime = 500;
         iterationCount = 0;
         removeGameBoard();
-        setupGameBoardFigure('longhorn');
+        setupGameBoardPattern('longhorn');
         grid = createGrid();
         currentPattern = 'longhorn';
         correctPattern = correctGridLonghorn();
@@ -316,7 +286,7 @@ pentadecathlonButton.addEventListener('click', () => {
         updateTime = 500;
         iterationCount = 0;
         removeGameBoard();
-        setupGameBoardFigure('pentadecathlon');
+        setupGameBoardPattern('pentadecathlon');
         grid = createGrid();
         currentPattern = 'pentadecathlon';
         correctPattern = correctGridPentadecathlon();
@@ -331,7 +301,7 @@ pedestrianButton.addEventListener('click', () => {
         updateTime = 50;
         iterationCount = 0;
         removeGameBoard();
-        setupGameBoardFigure('pedestrian');
+        setupGameBoardPattern('pedestrian');
         grid = createGrid();
         currentPattern = 'pedestrian';
         correctPattern = correctGridPedestrian();
@@ -341,7 +311,7 @@ pedestrianButton.addEventListener('click', () => {
 const playButton = document.querySelector('#play');
 playButton.addEventListener('click', () => {
     if (!isRunning) {
-        isCorrect = compareArrays(grid, correctPattern);
+        const isCorrect = compareArrays(grid, correctPattern);
         if (isCorrect) {
             foundPatterns.add(currentPattern);
             console.log("Congratulations, you found the correct pattern.");
@@ -352,13 +322,9 @@ playButton.addEventListener('click', () => {
         isRunning = true;
         console.log('Running game.');
         playButton.textContent = 'Pause';
-        toggleControls();
         iterateStep();
     } else {
-        isRunning = false;
-        console.log('Pausing game.');
-        playButton.textContent = 'Play';
-        toggleControls();
+        stopGame();
     }
 })
 
