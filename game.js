@@ -46,6 +46,7 @@ const setupGameBoardPattern = function(pattern) {
             cell.onclick = cellClickHandler;
             cell.style.setProperty('width', cellSize + 'px');
             cell.style.setProperty('height', cellSize + 'px');
+            cell.style.transition = updateTime/2 + 'ms';
             cellRow.appendChild(cell);
         }
         cellGrid.appendChild(cellRow);
@@ -235,12 +236,19 @@ const stopGame = function() {
     return;
 }
 
+const patternFound = function(currentPattern) {
+    const gameContainer = document.querySelector('#game');
+    let messageContainer = document.createElement('div');
+    messageContainer.innerHTML = `Congratulations you found ${currentPattern}!`;
+    gameContainer.appendChild(messageContainer);
+    return;
+}
+
 // compare two arrays
 // TODO this may be slow
 const compareArrays = function(array1, array2) {
     return JSON.stringify(array1) === JSON.stringify(array2);
 }
-
 let numRows = 10;
 let numCols = 10;
 let isRunning = false;
@@ -259,8 +267,8 @@ const longhornButton = document.querySelector('#longhorn');
 longhornButton.addEventListener('click', () => {
     if (!isRunning) {
         currentPattern = 'longhorn';
-        numRows = 15;
-        numCols = 15;
+        numRows = 13;
+        numCols = 13;
         updateTime = 500;
         iterationCount = 0;
         removeGameBoard();
@@ -306,6 +314,7 @@ playButton.addEventListener('click', () => {
         isCorrect = compareArrays(grid, correctPattern);
         if (isCorrect) {
             foundPatterns.add(currentPattern);
+            patternFound(currentPattern);
             console.log("Congratulations, you found the correct pattern.");
             if (foundPatterns.size === 3) {
                 console.log("Congratulations, you have solved the puzzle.");
