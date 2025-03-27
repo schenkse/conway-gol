@@ -96,83 +96,55 @@ const createGrid = function() {
     return grid;
 }
 
-const correctGridLonghorn = function() {
-    const grid = [];
-    for (let i = 0; i < numRows; i++) {
-        grid[i] = [];
-        for (let j = 0; j < numCols; j++) {
-            grid[i][j] = 0;
-        }
-    }
+const correctGrid = function(pattern) {
+    let grid = createGrid();
     const iMid = Math.floor(numRows / 2);
     const jMid = Math.floor(numCols / 2);
-    grid[iMid - 2][jMid - 3] = 1;
-    grid[iMid - 2][jMid - 2] = 1;
-    grid[iMid - 2][jMid + 2] = 1;
-    grid[iMid - 2][jMid + 3] = 1;
-    grid[iMid - 1][jMid - 4] = 1;
-    grid[iMid - 1][jMid - 1] = 1;
-    grid[iMid - 1][jMid + 1] = 1;
-    grid[iMid - 1][jMid + 4] = 1;
-    grid[iMid][jMid - 4] = 1;
-    grid[iMid][jMid - 3] = 1;
-    grid[iMid][jMid - 1] = 1;
-    grid[iMid][jMid + 1] = 1;
-    grid[iMid][jMid + 3] = 1;
-    grid[iMid][jMid + 4] = 1;
-    grid[iMid + 1][jMid - 1] = 1;
-    grid[iMid + 1][jMid + 1] = 1;
-    grid[iMid + 2][jMid - 1] = 1;
-    grid[iMid + 2][jMid + 1] = 1;
-    grid[iMid + 3][jMid] = 1;
-    return grid;
-}
-
-const correctGridPentadecathlon = function() {
-    const grid = [];
-    for (let i = 0; i < numRows; i++) {
-        grid[i] = [];
-        for (let j = 0; j < numCols; j++) {
-            grid[i][j] = 0;
+    if (pattern === 'longhorn') {
+        grid[iMid - 2][jMid - 3] = 1;
+        grid[iMid - 2][jMid - 2] = 1;
+        grid[iMid - 2][jMid + 2] = 1;
+        grid[iMid - 2][jMid + 3] = 1;
+        grid[iMid - 1][jMid - 4] = 1;
+        grid[iMid - 1][jMid - 1] = 1;
+        grid[iMid - 1][jMid + 1] = 1;
+        grid[iMid - 1][jMid + 4] = 1;
+        grid[iMid][jMid - 4] = 1;
+        grid[iMid][jMid - 3] = 1;
+        grid[iMid][jMid - 1] = 1;
+        grid[iMid][jMid + 1] = 1;
+        grid[iMid][jMid + 3] = 1;
+        grid[iMid][jMid + 4] = 1;
+        grid[iMid + 1][jMid - 1] = 1;
+        grid[iMid + 1][jMid + 1] = 1;
+        grid[iMid + 2][jMid - 1] = 1;
+        grid[iMid + 2][jMid + 1] = 1;
+        grid[iMid + 3][jMid] = 1;
+    } else if (pattern === 'pentadecathlon') {
+        grid[iMid - 1][jMid - 3] = 1;
+        grid[iMid - 1][jMid + 2] = 1;
+        for (let j = -5; j < 5; j++) {
+            if (j == -3 || j == 2) { continue; }
+            grid[iMid][jMid + j] = 1;
         }
+        grid[iMid + 1][jMid - 3] = 1;
+        grid[iMid + 1][jMid + 2] = 1;
+    } else if (pattern === 'pedestrian') {
+        grid[iMid - 2][jMid - 4] = 1;
+        grid[iMid - 2][jMid - 1] = 1;
+        grid[iMid - 1][jMid + 1] = 1;
+        grid[iMid][jMid - 4] = 1;
+        grid[iMid][jMid] = 1;
+        grid[iMid][jMid + 2] = 1;
+        grid[iMid][jMid + 3] = 1;
+        grid[iMid + 1][jMid - 4] = 1;
+        grid[iMid + 1][jMid] = 1;
+        grid[iMid + 2][jMid - 4] = 1;
+        grid[iMid + 2][jMid - 2] = 1;
+        grid[iMid + 2][jMid - 1] = 1;
+        grid[iMid + 3][jMid - 4] = 1;
+        grid[iMid + 3][jMid - 2] = 1;
     }
-    const iMid = Math.floor(numRows / 2);
-    const jMid = Math.floor(numCols / 2);
-    grid[iMid - 1][jMid - 3] = 1;
-    grid[iMid - 1][jMid + 2] = 1;
-    for (let j = -5; j < 5; j++) {
-        if (j == -3 || j == 2) { continue; }
-        grid[iMid][jMid + j] = 1;
-    }
-    grid[iMid + 1][jMid - 3] = 1;
-    grid[iMid + 1][jMid + 2] = 1;
-    return grid;
-}
-
-const correctGridPedestrian = function() {
-    const grid = [];
-    for (let i = 0; i < numRows; i++) {
-        grid[i] = [];
-        for (let j = 0; j < numCols; j++) {
-            grid[i][j] = 0;
-        }
-    }
-    const iMid = Math.floor(numRows / 2);
-    const jMid = Math.floor(numCols / 2);
-    grid[iMid - 2][jMid - 4] = 1;
-    grid[iMid - 2][jMid - 1] = 1;
-    grid[iMid - 1][jMid + 1] = 1;
-    grid[iMid][jMid - 4] = 1;
-    grid[iMid][jMid] = 1;
-    grid[iMid][jMid + 2] = 1;
-    grid[iMid][jMid + 3] = 1;
-    grid[iMid + 1][jMid - 4] = 1;
-    grid[iMid + 1][jMid] = 1;
-    grid[iMid + 2][jMid - 4] = 1;
-    grid[iMid + 2][jMid - 2] = 1;
-    grid[iMid + 2][jMid - 1] = 1;
-    grid[iMid + 3][jMid - 4] = 1;
-    grid[iMid + 3][jMid - 2] = 1;
     return grid;
 }
 
@@ -279,7 +251,7 @@ longhornButton.addEventListener('click', () => {
         removeGameBoard();
         setupGameBoardPattern(currentPattern);
         grid = createGrid();
-        correctPattern = correctGridLonghorn();
+        correctPattern = correctGrid(currentPattern);
     }
 })
 
@@ -294,7 +266,7 @@ pentadecathlonButton.addEventListener('click', () => {
         removeGameBoard();
         setupGameBoardPattern(currentPattern);
         grid = createGrid();
-        correctPattern = correctGridPentadecathlon();
+        correctPattern = correctGrid(currentPattern);
     }
 })
 
@@ -309,7 +281,7 @@ pedestrianButton.addEventListener('click', () => {
         removeGameBoard();
         setupGameBoardPattern(currentPattern);
         grid = createGrid();
-        correctPattern = correctGridPedestrian();
+        correctPattern = correctGrid(currentPattern);
     }
 })
 
