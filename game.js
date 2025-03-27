@@ -5,7 +5,7 @@ let iterationCount = 0;
 const setupGameBoardPattern = function(pattern) {
     const gameBoard = document.querySelector('#gameBoard');
     if (!gameBoard) {
-        console.error("Error: No division element for game board.")
+        console.error("Error: No division element for game board.");
     }
     console.log("Setting up " + pattern + ".");
     // TODO: remove hardcoded gameboard width
@@ -236,6 +236,11 @@ const iterateStep = function() {
     updateGrid();
     updateGridView();
     iterationCount++;
+    // check if at least one cell is still alive
+    const isLive = grid.flat().includes(1);
+    if (!isLive) {
+        stopGame();
+    }
     if (isRunning) {
         timer = setTimeout(iterateStep, updateTime);
     }
