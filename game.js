@@ -12,6 +12,10 @@ const setupGameBoardPattern = function(pattern) {
     if (!gameBoard) {
         console.error("Error: No division element for game board.");
     }
+    if (!initialized) {
+        resetButton.removeAttribute('disabled');
+        initialized = true;
+    }
     console.log("Setting up " + pattern + ".");
     // TODO: remove hardcoded gameboard width
     const cellSize = Math.floor(640 / numCols);
@@ -241,10 +245,15 @@ let numRows = 10;
 let numCols = 10;
 let isRunning = false;
 let isCorrect = false;
+let initialized = false;
 let grid = createGrid();
 let currentPattern;
 let correctPattern;
 let foundPatterns = new Set();
+
+const initializeGame = function() {
+    resetButton.toggleAttribute('disabled');
+}
 
 const longhornButton = document.querySelector('#longhorn');
 longhornButton.addEventListener('click', () => {
@@ -323,3 +332,5 @@ resetButton.addEventListener('click', () => {
     grid = createGrid();
     playButton.textContent = 'Play';
 })
+
+window.onload = initializeGame();
