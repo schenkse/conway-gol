@@ -271,14 +271,14 @@ let foundPatterns = new Set();
 const longhornButton = document.querySelector('#longhorn');
 longhornButton.addEventListener('click', () => {
     if (!isRunning) {
+        currentPattern = 'longhorn';
         numRows = 15;
         numCols = 15;
         updateTime = 500;
         iterationCount = 0;
         removeGameBoard();
-        setupGameBoardPattern('longhorn');
+        setupGameBoardPattern(currentPattern);
         grid = createGrid();
-        currentPattern = 'longhorn';
         correctPattern = correctGridLonghorn();
     }
 })
@@ -286,14 +286,14 @@ longhornButton.addEventListener('click', () => {
 const pentadecathlonButton = document.querySelector('#pentadecathlon');
 pentadecathlonButton.addEventListener('click', () => {
     if (!isRunning) {
+        currentPattern = 'pentadecathlon';
         numRows = 11;
         numCols = 18;
         updateTime = 500;
         iterationCount = 0;
         removeGameBoard();
-        setupGameBoardPattern('pentadecathlon');
+        setupGameBoardPattern(currentPattern);
         grid = createGrid();
-        currentPattern = 'pentadecathlon';
         correctPattern = correctGridPentadecathlon();
     }
 })
@@ -301,14 +301,14 @@ pentadecathlonButton.addEventListener('click', () => {
 const pedestrianButton = document.querySelector('#pedestrian');
 pedestrianButton.addEventListener('click', () => {
     if (!isRunning) {
+        currentPattern = 'pedestrian';
         numRows = 50;
         numCols = 50;
         updateTime = 50;
         iterationCount = 0;
         removeGameBoard();
-        setupGameBoardPattern('pedestrian');
+        setupGameBoardPattern(currentPattern);
         grid = createGrid();
-        currentPattern = 'pedestrian';
         correctPattern = correctGridPedestrian();
     }
 })
@@ -341,6 +341,7 @@ resetButton.addEventListener('click', () => {
     console.log('Resetting game.');
     iterationCount = 0;
     removeGameBoard();
-    playButton.textContent = 'Play';
+    setupGameBoardPattern(currentPattern);
     grid = createGrid();
+    playButton.textContent = 'Play';
 })
