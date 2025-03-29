@@ -12,6 +12,10 @@ const solutions = {
     pedestrian: "z = 3"
 };
 
+const symbolPlay = '&#x23F5';
+const symbolPause = '&#x23F8';
+const symbolReset = '&#x23EE';
+
 const setupGameBoardPattern = function(pattern) {
     const gameBoard = document.querySelector('#gameBoard');
     if (!gameBoard) {
@@ -236,13 +240,13 @@ const iterateStep = function() {
 
 const stopGame = function() {
     isRunning = false;
-    playButton.textContent = 'Play';
+    playButton.innerHTML = symbolPlay;
     console.log("Pausing game.")
     return;
 }
 
 const setupControls = function() {
-    const controlButtons = document.querySelectorAll('.controlButton');
+    const controlButtons = document.querySelectorAll('.playPause');
     controlButtons.forEach((item) => {
         item.classList.remove('hidden');
     })
@@ -341,7 +345,7 @@ playButton.addEventListener('click', () => {
         }
         isRunning = true;
         console.log('Running game.');
-        playButton.textContent = 'Pause';
+        playButton.innerHTML = symbolPause;
         iterateStep();
     } else {
         stopGame();
@@ -358,7 +362,7 @@ resetButton.addEventListener('click', () => {
     removeGameBoard();
     setupGameBoardPattern(currentPattern);
     grid = createGrid();
-    playButton.textContent = 'Play';
+    playButton.innerHTML = symbolPlay;
 })
 
 window.onload = initializeGame();

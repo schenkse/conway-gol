@@ -8,8 +8,9 @@ body {
 }
 
 #gameControls {
-    width: 680px;
-    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #gameBoard {
@@ -32,6 +33,7 @@ td {
 
 .dead {
     background-color: transparent;
+    cursor: pointer;
 }
 
 .dead.active-cell {
@@ -41,12 +43,42 @@ td {
 
 .live {
     background-color: black;
+    cursor: pointer;
 }
 
 .controlButton {
     width: 100px;
     height: 50px;
     border-radius: 10px;
+}
+
+#choosePattern {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#runSimulation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.playPause {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+    width: 75px;
+    height: 75px;
+    border: none;
+    border-radius: 100%;
+    color: black;
+    padding: 20px;
+    text-decoration: none;
+    font-size: 32px;
+    margin: 4px 4px;
+    cursor: pointer;
 }
 
 .dead.longhorn {
@@ -78,6 +110,10 @@ td {
 
 .hidden {
     visibility: hidden;
+}
+
+button {
+    cursor: pointer;
 }
 
 button:hover {
