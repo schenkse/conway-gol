@@ -327,8 +327,8 @@ const pedestrianButton = document.querySelector('#pedestrian');
 pedestrianButton.addEventListener('click', () => {
     if (!isRunning) {
         currentPattern = 'pedestrian';
-        numRows = 50;
-        numCols = 50;
+        numRows = 40;
+        numCols = 40;
         updateTime = 50;
         iterationCount = 0;
         totalLiveCount = 0;
