@@ -12,28 +12,32 @@
 <body>
     <div id="game">
         <div id="gameControls">
-            <button type="button" class="controlButton" id="longhorn">
-                <math display="inline">
-                    <mi>x = ?</mi>
-                </math>
-            </button>
-            <button type="button" class="controlButton" id="pentadecathlon">
-                <math display="inline">
-                    <mi>y = ?</mi>
-                </math>
-            </button>
-            <button type="button" class="controlButton" id="pedestrian">
-                <math display="inline">
-                    <mi>z = ?</mi>
-                </math>
-            </button>
+            <div id="choosePattern">
+                <button type="button" class="controlButton" id="longhorn">
+                    <math display="inline">
+                        <mi>x = ?</mi>
+                    </math>
+                </button>
+                <button type="button" class="controlButton" id="pentadecathlon">
+                    <math display="inline">
+                        <mi>y = ?</mi>
+                    </math>
+                </button>
+                <button type="button" class="controlButton" id="pedestrian">
+                    <math display="inline">
+                        <mi>z = ?</mi>
+                    </math>
+                </button>
+            </div>
             <br>
-            <button type="button" class="controlButton hidden" id="play">
-                Play
-            </button>
-            <button type="button" class="controlButton hidden" id="reset">
-                Reset
-            </button>
+            <div id="runSimulation">
+                <button type="button" class="controlButton hidden" id="play">
+                    Play
+                </button>
+                <button type="button" class="controlButton hidden" id="reset">
+                    Reset
+                </button>
+            </div>
         </div>
         <br>
         <div id="gameBoard"></div>

@@ -6,6 +6,11 @@ const maxIterations = {
     pentadecathlon: 100,
     pedestrian: 1000
 };
+const solutions = {
+    longhorn: "x = 1",
+    pentadecathlon: "y = 2",
+    pedestrian: "z = 3"
+};
 
 const setupGameBoardPattern = function(pattern) {
     const gameBoard = document.querySelector('#gameBoard');
@@ -246,6 +251,8 @@ const setupControls = function() {
 
 const patternFound = function(currentPattern) {
     const gameContainer = document.querySelector('#game');
+    const patternButton = document.querySelector(`#${currentPattern}`);
+    patternButton.innerHTML = `<math><mi>${solutions[currentPattern]}</mi></math>`;
     let messageContainer = document.createElement('div');
     messageContainer.innerHTML = `Congratulations you found ${currentPattern}!`;
     gameContainer.appendChild(messageContainer);
@@ -257,6 +264,7 @@ const patternFound = function(currentPattern) {
 const compareArrays = function(array1, array2) {
     return JSON.stringify(array1) === JSON.stringify(array2);
 }
+
 let numRows = 10;
 let numCols = 10;
 let isRunning = false;
@@ -296,6 +304,7 @@ pentadecathlonButton.addEventListener('click', () => {
         updateTime = 500;
         iterationCount = 0;
         removeGameBoard();
+        setupControls();
         setupGameBoardPattern(currentPattern);
         grid = createGrid();
         correctPattern = correctGrid(currentPattern);
@@ -311,6 +320,7 @@ pedestrianButton.addEventListener('click', () => {
         updateTime = 50;
         iterationCount = 0;
         removeGameBoard();
+        setupControls();
         setupGameBoardPattern(currentPattern);
         grid = createGrid();
         correctPattern = correctGrid(currentPattern);
