@@ -26,8 +26,10 @@ const setupGameBoardPattern = function(pattern) {
         initialized = true;
     }
     console.log("Setting up " + pattern + ".");
-    // TODO: remove hardcoded gameboard width
-    const cellSize = Math.floor(640 / numCols);
+    gameBoardContainer = document.querySelector('#gameBoardContainer');
+    const rowSize = Math.floor(0.75 * gameBoardContainer.offsetHeight / numRows);
+    const colSize = Math.floor(0.75 * gameBoardContainer.offsetWidth / numCols);
+    const cellSize = Math.min(rowSize, colSize);
     let cellGrid = document.createElement('table');
     const iMidpoint = Math.floor(numRows / 2);
     const jMidpoint = Math.floor(numCols / 2);
