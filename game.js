@@ -261,7 +261,8 @@ const patternFound = function(currentPattern) {
     patternButton.innerHTML = `<math><mi>${solutions[currentPattern]}</mi></math>`;
     let messageContainer = document.createElement('div');
     messageContainer.classList.add('overlayMessage');
-    messageContainer.innerHTML = `Congratulations you found ${currentPattern}!`;
+    messageContainer.classList.add(currentPattern);
+    messageContainer.innerHTML = `Congratulations you found ${currentPattern}! Ihr findet außerdem <math><mi>${solutions[currentPattern]}</mi></math>`;
     gameBoardContainer.appendChild(messageContainer);
     return;
 }

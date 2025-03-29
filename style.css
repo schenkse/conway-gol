@@ -171,10 +171,17 @@ button:hover {
     align-items: center;
     justify-content: center;
     z-index: 1;
-    background-color: red;
     width: 400px;
     height: 200px;
     border-radius: 10px;
     font-size: 32px;
     position: absolute;
+}
+
+.longhorn {
+    background-color: orange;
+}
+
+.pentadecathlon {
+    background-color: greenyellow;
 }
