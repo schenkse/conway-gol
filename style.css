@@ -153,6 +153,7 @@ td {
 
 button {
     cursor: pointer;
+    transition: all 0.7s ease;
 }
 
 button:disabled {
@@ -162,5 +163,5 @@ button:disabled {
 
 button:hover {
     background-color: darkgray;
-    transition: 0.7s;
+    transition: all 0.7s ease;
 }

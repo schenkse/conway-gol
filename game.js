@@ -346,7 +346,7 @@ playButton.addEventListener('click', () => {
         isCorrect = compareArrays(grid, correctPattern);
         if (isCorrect) {
             foundPatterns.add(currentPattern);
-            patternFound(currentPattern);
+            //patternFound(currentPattern);
             console.log("Congratulations, you found the correct pattern.");
             if (foundPatterns.size === 3) {
                 console.log("Congratulations, you have solved the puzzle.");
