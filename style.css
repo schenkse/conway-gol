@@ -45,8 +45,7 @@ td {
 }
 
 .dead.active-cell {
-    background-color: black;
-    opacity: 0.1;
+    background-color: darkgray;
 }
 
 .live {
@@ -101,7 +100,6 @@ td {
     text-decoration: none;
     font-size: 32px;
     margin: 4px 4px;
-    cursor: pointer;
 }
 
 .dead.longhorn {
@@ -137,6 +135,11 @@ td {
 
 button {
     cursor: pointer;
+}
+
+button:disabled {
+    color: darkgray;
+    pointer-events: none;
 }
 
 button:hover {

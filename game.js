@@ -21,10 +21,6 @@ const setupGameBoardPattern = function(pattern) {
     if (!gameBoard) {
         console.error("Error: No division element for game board.");
     }
-    if (!initialized) {
-        resetButton.removeAttribute('disabled');
-        initialized = true;
-    }
     console.log("Setting up " + pattern + ".");
     gameBoardContainer = document.querySelector('#gameBoardContainer');
     const rowSize = Math.floor(0.75 * gameBoardContainer.offsetHeight / numRows);
@@ -247,14 +243,6 @@ const stopGame = function() {
     return;
 }
 
-const setupControls = function() {
-    const controlButtons = document.querySelectorAll('.playPause');
-    controlButtons.forEach((item) => {
-        item.classList.remove('hidden');
-    })
-    return;
-}
-
 const patternFound = function(currentPattern) {
     const gameContainer = document.querySelector('#game');
     const patternButton = document.querySelector(`#${currentPattern}`);
@@ -281,8 +269,13 @@ let currentPattern;
 let correctPattern;
 let foundPatterns = new Set();
 
-const initializeGame = function() {
-    resetButton.toggleAttribute('disabled');
+const setupControls = function() {
+    if (!initialized) {
+        playButton.removeAttribute('disabled');
+        resetButton.removeAttribute('disabled');
+        initialized = true;
+    }
+    return;
 }
 
 const longhornButton = document.querySelector('#longhorn');
@@ -366,5 +359,3 @@ resetButton.addEventListener('click', () => {
     grid = createGrid();
     playButton.innerHTML = symbolPlay;
 })
-
-window.onload = initializeGame();
