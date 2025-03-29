@@ -41,22 +41,26 @@ td {
     border-radius: 10%;
 }
 
-.active-cell {
+/*.active-cell {
     opacity: 0.1;
-}
+}*/
 
 .dead {
     background-color: transparent;
     cursor: pointer;
 }
 
-.dead.active-cell {
-    background-color: darkgray;
+.active-cell {
+    background-color: lightgray;
 }
 
 .live {
     background-color: black;
     cursor: pointer;
+}
+
+.live.active-cell {
+    background-color: darkgray;
 }
 
 .controlButton {
@@ -113,6 +117,11 @@ td {
     opacity: 0.5;
 }
 
+.dead.longhorn.active-cell {
+    background-color: orange;
+    opacity: 1.0;
+}
+
 #longhorn {
     background-color: orange;
 }
@@ -120,6 +129,11 @@ td {
 .dead.pentadecathlon {
     background-color: greenyellow;
     opacity: 0.5;
+}
+
+.dead.pentadecathlon.active-cell {
+    background-color: greenyellow;
+    opacity: 1.0;
 }
 
 #pentadecathlon {
@@ -131,12 +145,13 @@ td {
     opacity: 0.5;
 }
 
-#pedestrian {
+.dead.pedestrian.active-cell {
     background-color: cornflowerblue;
+    opacity: 1.0;
 }
 
-.hidden {
-    visibility: hidden;
+#pedestrian {
+    background-color: cornflowerblue;
 }
 
 button {
