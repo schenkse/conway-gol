@@ -25,6 +25,7 @@ table {
 
 td {
     border: 1px solid black;
+    border-radius: 5px;
 }
 
 .active-cell {
@@ -47,9 +48,24 @@ td {
 }
 
 .controlButton {
-    width: 100px;
-    height: 50px;
-    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 75px;
+    border: none;
+    border-radius: 20px;
+    color: black;
+    padding: 20px;
+    text-decoration: none;
+    font-size: 32px;
+    margin: 4px 4px;
+}
+
+#gameBoardContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #choosePattern {
@@ -117,6 +133,6 @@ button {
 }
 
 button:hover {
-    background-color:cornflowerblue;
+    background-color: darkgray;
     transition: 0.7s;
 }
