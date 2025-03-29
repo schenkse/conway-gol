@@ -76,6 +76,10 @@ td {
     background-color: cornflowerblue;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 button:hover {
     background-color:cornflowerblue;
     transition: 0.7s;

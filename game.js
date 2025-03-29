@@ -236,6 +236,14 @@ const stopGame = function() {
     return;
 }
 
+const setupControls = function() {
+    const controlButtons = document.querySelectorAll('.controlButton');
+    controlButtons.forEach((item) => {
+        item.classList.remove('hidden');
+    })
+    return;
+}
+
 const patternFound = function(currentPattern) {
     const gameContainer = document.querySelector('#game');
     let messageContainer = document.createElement('div');
@@ -272,6 +280,7 @@ longhornButton.addEventListener('click', () => {
         updateTime = 500;
         iterationCount = 0;
         removeGameBoard();
+        setupControls();
         setupGameBoardPattern(currentPattern);
         grid = createGrid();
         correctPattern = correctGrid(currentPattern);
