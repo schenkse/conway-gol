@@ -23,11 +23,12 @@ const setupGameBoardPattern = function(pattern) {
         console.error("Error: No division element for game board.");
     }
     console.log("Setting up " + pattern + ".");
-    gameBoardContainer = document.querySelector('#gameBoardContainer');
-    const rowSize = Math.floor(0.75 * gameBoardContainer.offsetHeight / numRows);
-    const colSize = Math.floor(0.75 * gameBoardContainer.offsetWidth / numCols);
-    const cellSize = Math.min(rowSize, colSize);
+    const gameBoardContainer = document.querySelector('#gameBoardContainer');
     let cellGrid = document.createElement('table');
+    // account for table spacing of 1px in the row size
+    const rowSize = Math.floor(0.8 * (gameBoardContainer.offsetHeight - 2 * numRows) / numRows);
+    const colSize = Math.floor(0.8 * (gameBoardContainer.offsetWidth - 2 * numCols) / numCols);
+    const cellSize = Math.min(rowSize, colSize);
     const iMidpoint = Math.floor(numRows / 2);
     const jMidpoint = Math.floor(numCols / 2);
     for (let i = 0; i < numRows; i++) {
@@ -236,7 +237,6 @@ const iterateStep = function() {
     updateGridView();
     iterationCount++;
     // check if at least one cell is still alive
-    //const isLive = grid.flat().includes(1);
     const isLive = totalLiveCount > 0;
     if (!isLive || (isCorrect && iterationCount > maxIterations[currentPattern])) {
         stopGame();
