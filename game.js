@@ -11,6 +11,7 @@ const solutions = {
     pentadecathlon: "y = 2",
     pedestrian: "z = 3"
 };
+let totalLiveCount = 0;
 
 const symbolPlay = '&#x23F5';
 const symbolPause = '&#x23F8';
@@ -82,10 +83,17 @@ const cellClickHandler = function() {
         this.classList.remove('live');
         this.classList.add('dead');
         grid[row][col] = 0;
+        totalLiveCount--;
     } else {
         this.classList.remove('dead');
         this.classList.add('live');
         grid[row][col] = 1;
+        totalLiveCount++;
+    }
+    if (totalLiveCount === 0) {
+        playButton.toggleAttribute('disabled');
+    } else {
+        playButton.removeAttribute('disabled');
     }
     return;
 }
@@ -191,8 +199,10 @@ const updateGrid = function() {
             const liveNeighbours = countLiveNeighbours(i, j);
             if (grid[i][j] === 1 && (liveNeighbours < 2 || liveNeighbours > 3)) {
                 newGrid[i][j] = 0;
+                totalLiveCount--;
             } else if (grid[i][j] === 0 && liveNeighbours === 3) {
                 newGrid[i][j] = 1;
+                totalLiveCount++;
             } else {
                 newGrid[i][j] = grid[i][j];
             }
@@ -226,7 +236,8 @@ const iterateStep = function() {
     updateGridView();
     iterationCount++;
     // check if at least one cell is still alive
-    const isLive = grid.flat().includes(1);
+    //const isLive = grid.flat().includes(1);
+    const isLive = totalLiveCount > 0;
     if (!isLive || (isCorrect && iterationCount > maxIterations[currentPattern])) {
         stopGame();
     }
@@ -238,6 +249,7 @@ const iterateStep = function() {
 
 const stopGame = function() {
     isRunning = false;
+    playButton.setAttribute('disabled', 'true');
     playButton.innerHTML = symbolPlay;
     console.log("Pausing game.")
     return;
@@ -271,7 +283,6 @@ let foundPatterns = new Set();
 
 const setupControls = function() {
     if (!initialized) {
-        playButton.removeAttribute('disabled');
         resetButton.removeAttribute('disabled');
         initialized = true;
     }
@@ -286,6 +297,7 @@ longhornButton.addEventListener('click', () => {
         numCols = 13;
         updateTime = 500;
         iterationCount = 0;
+        totalLiveCount = 0;
         removeGameBoard();
         setupControls();
         setupGameBoardPattern(currentPattern);
@@ -302,6 +314,7 @@ pentadecathlonButton.addEventListener('click', () => {
         numCols = 18;
         updateTime = 500;
         iterationCount = 0;
+        totalLiveCount = 0;
         removeGameBoard();
         setupControls();
         setupGameBoardPattern(currentPattern);
@@ -318,6 +331,7 @@ pedestrianButton.addEventListener('click', () => {
         numCols = 50;
         updateTime = 50;
         iterationCount = 0;
+        totalLiveCount = 0;
         removeGameBoard();
         setupControls();
         setupGameBoardPattern(currentPattern);
@@ -349,13 +363,14 @@ playButton.addEventListener('click', () => {
 
 const resetButton = document.querySelector('#reset');
 resetButton.addEventListener('click', () => {
-    if (isRunning) return;
     isRunning = false;
     foundPatterns.clear();
     console.log('Resetting game.');
     iterationCount = 0;
+    totalLiveCount = 0;
     removeGameBoard();
     setupGameBoardPattern(currentPattern);
     grid = createGrid();
+    playButton.setAttribute('disabled', 'true');
     playButton.innerHTML = symbolPlay;
 })
