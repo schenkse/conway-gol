@@ -165,3 +165,16 @@ button:hover {
     background-color: darkgray;
     transition: all 0.7s ease;
 }
+
+.overlayMessage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    background-color: red;
+    width: 400px;
+    height: 200px;
+    border-radius: 10px;
+    font-size: 32px;
+    position: absolute;
+}

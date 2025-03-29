@@ -256,12 +256,13 @@ const stopGame = function() {
 }
 
 const patternFound = function(currentPattern) {
-    const gameContainer = document.querySelector('#game');
+    const gameBoardContainer = document.querySelector('#gameBoardContainer');
     const patternButton = document.querySelector(`#${currentPattern}`);
     patternButton.innerHTML = `<math><mi>${solutions[currentPattern]}</mi></math>`;
     let messageContainer = document.createElement('div');
+    messageContainer.classList.add('overlayMessage');
     messageContainer.innerHTML = `Congratulations you found ${currentPattern}!`;
-    gameContainer.appendChild(messageContainer);
+    gameBoardContainer.appendChild(messageContainer);
     return;
 }
 
@@ -346,7 +347,7 @@ playButton.addEventListener('click', () => {
         isCorrect = compareArrays(grid, correctPattern);
         if (isCorrect) {
             foundPatterns.add(currentPattern);
-            //patternFound(currentPattern);
+            patternFound(currentPattern);
             console.log("Congratulations, you found the correct pattern.");
             if (foundPatterns.size === 3) {
                 console.log("Congratulations, you have solved the puzzle.");
