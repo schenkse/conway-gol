@@ -11,6 +11,11 @@ const solutions = {
     pentadecathlon: "y = 2",
     pedestrian: "z = 3"
 };
+const solutionsMath = {
+    longhorn: "<math><mi>x</mi> <mo>=</mo> <mi>1</mi></math>",
+    pentadecathlon: "<math><mi>y</mi> <mo>=</mo> <mi>2</mi></math>",
+    pedestrian: "<math><mi>z</mi> <mo>=</mo> <mi>3</mi></math>"
+};
 let totalLiveCount = 0;
 
 const symbolPlay = '&#x23F5';
@@ -258,12 +263,25 @@ const stopGame = function() {
 const patternFound = function(currentPattern) {
     const gameBoardContainer = document.querySelector('#gameBoardContainer');
     const patternButton = document.querySelector(`#${currentPattern}`);
-    patternButton.innerHTML = `<math><mi>${solutions[currentPattern]}</mi></math>`;
+    patternButton.innerHTML = `${solutionsMath[currentPattern]}`;
     let messageContainer = document.createElement('div');
     messageContainer.classList.add('overlayMessage');
     messageContainer.classList.add(currentPattern);
-    messageContainer.innerHTML = `Congratulations you found ${currentPattern}! Ihr findet außerdem <math><mi>${solutions[currentPattern]}</mi></math>`;
+    messageContainer.innerHTML = `<p>
+        Herzlichen Glückwunsch, ihr habt das richtige Muster entdeckt!
+        <br>
+        Ihr findet ${solutionsMath[currentPattern]}.
+    </p>`;
     gameBoardContainer.appendChild(messageContainer);
+    return;
+}
+
+const removeMessage = function() {
+    const gameBoardContainer = document.querySelector('#gameBoardContainer');
+    const messages = document.querySelectorAll('.overlayMessage');
+    messages.forEach((item) => {
+        gameBoardContainer.removeChild(item);
+    })
     return;
 }
 
@@ -300,6 +318,7 @@ longhornButton.addEventListener('click', () => {
         updateTime = 500;
         iterationCount = 0;
         totalLiveCount = 0;
+        removeMessage();
         removeGameBoard();
         setupControls();
         setupGameBoardPattern(currentPattern);
@@ -317,6 +336,7 @@ pentadecathlonButton.addEventListener('click', () => {
         updateTime = 500;
         iterationCount = 0;
         totalLiveCount = 0;
+        removeMessage();
         removeGameBoard();
         setupControls();
         setupGameBoardPattern(currentPattern);
@@ -334,6 +354,7 @@ pedestrianButton.addEventListener('click', () => {
         updateTime = 50;
         iterationCount = 0;
         totalLiveCount = 0;
+        removeMessage();
         removeGameBoard();
         setupControls();
         setupGameBoardPattern(currentPattern);
@@ -370,6 +391,7 @@ resetButton.addEventListener('click', () => {
     console.log('Resetting game.');
     iterationCount = 0;
     totalLiveCount = 0;
+    removeMessage();
     removeGameBoard();
     setupGameBoardPattern(currentPattern);
     grid = createGrid();

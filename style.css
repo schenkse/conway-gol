@@ -197,8 +197,9 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     z-index: 1;
-    width: 400px;
+    width: 600px;
     height: 200px;
     border-radius: 10px;
     font-size: 32px;
@@ -211,4 +212,8 @@ button:hover {
 
 .pentadecathlon {
     background-color: greenyellow;
+}
+
+.pedestrian {
+    background-color: cornflowerblue;
 }
