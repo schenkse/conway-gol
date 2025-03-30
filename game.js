@@ -7,14 +7,14 @@ const maxIterations = {
     pedestrian: 500
 };
 const solutions = {
-    longhorn: "x = 1",
-    pentadecathlon: "y = 2",
-    pedestrian: "z = 3"
+    longhorn: "x = 4",
+    pentadecathlon: "y = 6",
+    pedestrian: "z = 9"
 };
 const solutionsMath = {
-    longhorn: "<math><mi>x</mi> <mo>=</mo> <mi>1</mi></math>",
-    pentadecathlon: "<math><mi>y</mi> <mo>=</mo> <mi>2</mi></math>",
-    pedestrian: "<math><mi>z</mi> <mo>=</mo> <mi>3</mi></math>"
+    longhorn: "<math><mi>x</mi> <mo>=</mo> <mi>4</mi></math>",
+    pentadecathlon: "<math><mi>y</mi> <mo>=</mo> <mi>6</mi></math>",
+    pedestrian: "<math><mi>z</mi> <mo>=</mo> <mi>9</mi></math>"
 };
 let totalLiveCount = 0;
 
