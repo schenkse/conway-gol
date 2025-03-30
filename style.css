@@ -199,7 +199,8 @@ button:hover, button:active {
     z-index: 1;
     width: 600px;
     height: 200px;
-    border-radius: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
     padding: 20px;
     font-size: 32px;
     position: absolute;

@@ -2,9 +2,9 @@ let timer;
 let updateTime = 100;
 let iterationCount = 0;
 const maxIterations = {
-    longhorn: 100,
-    pentadecathlon: 100,
-    pedestrian: 1000
+    longhorn: 20,
+    pentadecathlon: 20,
+    pedestrian: 500
 };
 const solutions = {
     longhorn: "x = 1",
@@ -239,8 +239,11 @@ const iterateStep = function() {
     iterationCount++;
     // check if at least one cell is still alive
     const isLive = totalLiveCount > 0;
-    if (!isLive || (isCorrect && iterationCount > maxIterations[currentPattern])) {
+    if (!isLive) {
         stopGame();
+    } else if (isCorrect && iterationCount > maxIterations[currentPattern]) {
+        stopGame();
+        patternFound(currentPattern);
     }
     if (isRunning) {
         timer = setTimeout(iterateStep, updateTime);
@@ -366,7 +369,6 @@ playButton.addEventListener('click', () => {
         isCorrect = compareArrays(grid, correctPattern);
         if (isCorrect) {
             foundPatterns.add(currentPattern);
-            patternFound(currentPattern);
             console.log("Congratulations, you found the correct pattern.");
             if (foundPatterns.size === 3) {
                 console.log("Congratulations, you have solved the puzzle.");
