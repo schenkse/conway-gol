@@ -263,6 +263,7 @@ const stopGame = function() {
 const patternFound = function(currentPattern) {
     const gameBoardContainer = document.querySelector('#gameBoardContainer');
     const patternButton = document.querySelector(`#${currentPattern}`);
+    patternButton.classList.replace('unsolved', 'solved');
     patternButton.innerHTML = `${solutionsMath[currentPattern]}`;
     let messageContainer = document.createElement('div');
     messageContainer.classList.add('overlayMessage');

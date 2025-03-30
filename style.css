@@ -24,6 +24,9 @@ body {
 }
 
 #gameBoardContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex: 1;
     overflow: auto;
 }
@@ -42,9 +45,22 @@ td {
     border-radius: 10%;
 }
 
+.unsolved {
+    opacity: 0.5;
+}
+
+.solved {
+    opacity: 1.0;
+}
+
 .dead {
     background-color: transparent;
     cursor: pointer;
+    opacity: 0.5;
+}
+
+.dead.active-cell {
+    opacity: 1.0;
 }
 
 .active-cell {
@@ -60,6 +76,18 @@ td {
     background-color: darkgray;
 }
 
+.longhorn {
+    background-color: orange;
+}
+
+.pentadecathlon {
+    background-color: greenyellow;
+}
+
+.pedestrian {
+    background-color: cornflowerblue;
+}
+
 .controlButton {
     display: flex;
     align-items: center;
@@ -73,12 +101,6 @@ td {
     text-decoration: none;
     font-size: 32px;
     margin: 4px 4px;
-}
-
-#gameBoardContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #choosePattern {
@@ -118,21 +140,6 @@ td {
     opacity: 1.0;
 }
 
-.dead.longhorn {
-    background-color: orange;
-    opacity: 0.5;
-}
-
-.dead.longhorn.active-cell {
-    background-color: orange;
-    opacity: 1.0;
-}
-
-#longhorn {
-    background-color: orange;
-    opacity: 0.5;
-}
-
 .live.pentadecathlon {
     background-color: black;
 }
@@ -142,21 +149,6 @@ td {
     opacity: 1.0;
 }
 
-.dead.pentadecathlon {
-    background-color: greenyellow;
-    opacity: 0.5;
-}
-
-.dead.pentadecathlon.active-cell {
-    background-color: greenyellow;
-    opacity: 1.0;
-}
-
-#pentadecathlon {
-    background-color: greenyellow;
-    opacity: 0.5;
-}
-
 .live.pedestrian {
     background-color: black;
 }
@@ -164,21 +156,6 @@ td {
 .live.pedestrian.active-cell {
     background-color: cornflowerblue;
     opacity: 1.0;
-}
-
-.dead.pedestrian {
-    background-color: cornflowerblue;
-    opacity: 0.5;
-}
-
-.dead.pedestrian.active-cell {
-    background-color: cornflowerblue;
-    opacity: 1.0;
-}
-
-#pedestrian {
-    background-color: cornflowerblue;
-    opacity: 0.5;
 }
 
 button {
@@ -226,16 +203,4 @@ button:hover, button:active {
     padding: 20px;
     font-size: 32px;
     position: absolute;
-}
-
-.longhorn {
-    background-color: orange;
-}
-
-.pentadecathlon {
-    background-color: greenyellow;
-}
-
-.pedestrian {
-    background-color: cornflowerblue;
 }
