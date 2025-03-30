@@ -109,6 +109,15 @@ td {
     margin: 4px 4px;
 }
 
+.live.longhorn {
+    background-color: black;
+}
+
+.live.longhorn.active-cell {
+    background-color: orange;
+    opacity: 1.0;
+}
+
 .dead.longhorn {
     background-color: orange;
     opacity: 0.5;
@@ -123,6 +132,15 @@ td {
     background-color: orange;
 }
 
+.live.pentadecathlon {
+    background-color: black;
+}
+
+.live.pentadecathlon.active-cell {
+    background-color: greenyellow;
+    opacity: 1.0;
+}
+
 .dead.pentadecathlon {
     background-color: greenyellow;
     opacity: 0.5;
@@ -135,6 +153,15 @@ td {
 
 #pentadecathlon {
     background-color: greenyellow;
+}
+
+.live.pedestrian {
+    background-color: black;
+}
+
+.live.pedestrian.active-cell {
+    background-color: cornflowerblue;
+    opacity: 1.0;
 }
 
 .dead.pedestrian {
