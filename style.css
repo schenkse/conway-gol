@@ -130,6 +130,7 @@ td {
 
 #longhorn {
     background-color: orange;
+    opacity: 0.5;
 }
 
 .live.pentadecathlon {
@@ -153,6 +154,7 @@ td {
 
 #pentadecathlon {
     background-color: greenyellow;
+    opacity: 0.5;
 }
 
 .live.pedestrian {
@@ -176,6 +178,7 @@ td {
 
 #pedestrian {
     background-color: cornflowerblue;
+    opacity: 0.5;
 }
 
 button {
@@ -188,9 +191,27 @@ button:disabled {
     pointer-events: none;
 }
 
-button:hover {
+button:hover, button:active {
     background-color: darkgray;
     transition: all 0.7s ease;
+}
+
+#longhorn:hover, #longhorn:active {
+    background-color: orange;
+    opacity: 1.0;
+    transition: all 0.5s ease;
+}
+
+#pentadecathlon:hover, #pentadecathlon:active {
+    background-color: greenyellow;
+    opacity: 1.0;
+    transition: all 0.5s ease;
+}
+
+#pedestrian:hover, #pedestrian:active {
+    background-color: cornflowerblue;
+    opacity: 1.0;
+    transition: all 0.5s ease;
 }
 
 .overlayMessage {
@@ -202,6 +223,7 @@ button:hover {
     width: 600px;
     height: 200px;
     border-radius: 10px;
+    padding: 20px;
     font-size: 32px;
     position: absolute;
 }

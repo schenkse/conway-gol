@@ -268,7 +268,7 @@ const patternFound = function(currentPattern) {
     messageContainer.classList.add('overlayMessage');
     messageContainer.classList.add(currentPattern);
     messageContainer.innerHTML = `<p>
-        Herzlichen Glückwunsch, ihr habt das richtige Muster entdeckt!
+        Gut gemacht, ihr habt das richtige Muster entdeckt!
         <br>
         Ihr findet ${solutionsMath[currentPattern]}.
     </p>`;
