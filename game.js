@@ -86,13 +86,11 @@ const cellClickHandler = function() {
     const cellState = this.getAttribute('class');
     // Invert cell based on current state
     if (cellState.includes('live')) {
-        this.classList.remove('live');
-        this.classList.add('dead');
+        this.classList.replace('live', 'dead');
         grid[row][col] = 0;
         totalLiveCount--;
     } else {
-        this.classList.remove('dead');
-        this.classList.add('live');
+        this.classList.replace('dead', 'live');
         grid[row][col] = 1;
         totalLiveCount++;
     }
@@ -185,11 +183,9 @@ const updateGridView = function() {
         for (let j = 0; j < numCols; j++) {
             let cell = document.querySelector('#cell_' + i + '_' + j);
             if (grid[i][j] === 0) {
-                cell.classList.remove('live');
-                cell.classList.add('dead');
+                cell.classList.replace('live', 'dead');
             } else {
-                cell.classList.remove('dead');
-                cell.classList.add('live');
+                cell.classList.replace('dead', 'live');
             }
         }
     }
