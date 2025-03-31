@@ -18,9 +18,9 @@ const solutionsMath = {
 };
 let totalLiveCount = 0;
 
-const symbolPlay = '&#x23F5';
-const symbolPause = '&#x23F8';
-const symbolReset = '&#x23EE';
+const symbolPlay = '&#x23F5;';
+const symbolPause = '&#x23F8;';
+const symbolReset = '&#x23EE;';
 
 const setupGameBoardPattern = function(pattern) {
     const gameBoard = document.querySelector('#gameBoard');
