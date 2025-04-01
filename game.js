@@ -18,9 +18,9 @@ const solutionsMath = {
 };
 let totalLiveCount = 0;
 
-const symbolPlay = '&#x23F5;';
-const symbolPause = '&#x23F8;';
-const symbolReset = '&#x23EE;';
+const symbolPlay = 'play_arrow';
+const symbolPause = 'pause';
+const symbolReset = 'replay';
 
 const setupGameBoardPattern = function(pattern) {
     const gameBoard = document.querySelector('#gameBoard');
@@ -255,7 +255,8 @@ const iterateStep = function() {
 const stopGame = function() {
     isRunning = false;
     playButton.setAttribute('disabled', 'true');
-    playButton.innerHTML = symbolPlay;
+    playButton.innerHTML = '<span class="material-symbols-outlined">' +
+    symbolPlay + '</span>';
     console.log("Pausing game.")
     return;
 }
@@ -377,7 +378,8 @@ playButton.addEventListener('click', () => {
         }
         isRunning = true;
         console.log('Running game.');
-        playButton.innerHTML = symbolPause;
+        playButton.innerHTML = '<span class="material-symbols-outlined">' +
+    symbolPause + '</span>';
         iterateStep();
     } else {
         stopGame();
@@ -396,5 +398,6 @@ resetButton.addEventListener('click', () => {
     setupGameBoardPattern(currentPattern);
     grid = createGrid();
     playButton.setAttribute('disabled', 'true');
-    playButton.innerHTML = symbolPlay;
+    playButton.innerHTML = '<span class="material-symbols-outlined">' +
+    symbolPlay + '</span>';
 })

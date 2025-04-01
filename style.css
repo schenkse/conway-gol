@@ -156,7 +156,7 @@ td {
     color: black;
     padding: 20px;
     text-decoration: none;
-    font-size: 32px;
+    font-size: 52px;
     margin: 4px 4px;
 }
 
@@ -238,4 +238,9 @@ button:hover, button:active {
     font-weight: 700;
     font-style: normal;
     font-variation-settings: "ROND" 0;
+}
+
+
+.material-symbols-outlined {
+    font-size: 48px
 }
