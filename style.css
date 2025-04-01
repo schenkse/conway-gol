@@ -1,3 +1,10 @@
+/* define custom colors */
+:root {
+    --orange: #ffad00;
+    --yellow: #cfff04;
+    --blue: #0099ff;
+}
+
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -77,15 +84,15 @@ td {
 }
 
 .longhorn {
-    background-color: orange;
+    background-color: var(--orange);
 }
 
 .pentadecathlon {
-    background-color: greenyellow;
+    background-color: var(--yellow);
 }
 
 .pedestrian {
-    background-color: cornflowerblue;
+    background-color: var(--blue);
 }
 
 .controlButton {
@@ -136,7 +143,7 @@ td {
 }
 
 .live.longhorn.active-cell {
-    background-color: orange;
+    background-color: var(--orange);
     opacity: 1.0;
 }
 
@@ -145,7 +152,7 @@ td {
 }
 
 .live.pentadecathlon.active-cell {
-    background-color: greenyellow;
+    background-color: var(--yellow);
     opacity: 1.0;
 }
 
@@ -154,7 +161,7 @@ td {
 }
 
 .live.pedestrian.active-cell {
-    background-color: cornflowerblue;
+    background-color: var(--blue);
     opacity: 1.0;
 }
 
@@ -174,19 +181,19 @@ button:hover, button:active {
 }
 
 #longhorn:hover, #longhorn:active {
-    background-color: orange;
+    background-color: var(--orange);
     opacity: 1.0;
     transition: all 0.5s ease;
 }
 
 #pentadecathlon:hover, #pentadecathlon:active {
-    background-color: greenyellow;
+    background-color: var(--yellow);
     opacity: 1.0;
     transition: all 0.5s ease;
 }
 
 #pedestrian:hover, #pedestrian:active {
-    background-color: cornflowerblue;
+    background-color: var(--blue);
     opacity: 1.0;
     transition: all 0.5s ease;
 }
