@@ -264,14 +264,14 @@ const patternFound = function(currentPattern) {
     const gameBoardContainer = document.querySelector('#gameBoardContainer');
     const patternButton = document.querySelector(`#${currentPattern}`);
     patternButton.classList.replace('unsolved', 'solved');
-    patternButton.innerHTML = `${solutionsMath[currentPattern]}`;
+    patternButton.innerHTML = `<p class="doto">${solutions[currentPattern]}</p>`;
     let messageContainer = document.createElement('div');
     messageContainer.classList.add('overlayMessage');
     messageContainer.classList.add(currentPattern);
-    messageContainer.innerHTML = `<p>
+    messageContainer.innerHTML = `<p class=".doto">
         Gut gemacht, ihr habt das richtige Muster entdeckt!
         <br>
-        Ihr findet ${solutionsMath[currentPattern]}.
+        Ihr findet ${solutions[currentPattern]}.
     </p>`;
     gameBoardContainer.appendChild(messageContainer);
     return;

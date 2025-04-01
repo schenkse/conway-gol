@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <script src="./game.js" defer></script>
     <title>MUSTER-DEKODIERER</title>
@@ -13,29 +16,24 @@
     <div class="wrapperViewHorizontal">
     <div id="game">
         <div id="wrapperHead">
-            <h1>MUSTER-DEKODIERER</h1>
+            <h1 class="doto">MUSTER-DEKODIERER</h1>
         </div>
         <div id="gameControls">
             <div id="choosePattern">
                 <button type="button" class="controlButton longhorn unsolved" id="longhorn">
-                    <math display="inline">
-                        <mi>x</mi> <mo>=</mo> <mi>?</mi>
-                    </math>
+                    <p class="doto">x = ?</p>
                 </button>
                 <button type="button" class="controlButton pentadecathlon unsolved" id="pentadecathlon">
-                    <math display="inline">
-                        <mi>y</mi> <mo>=</mo> <mi>?</mi>
-                    </math>
+                    <p class="doto">y = ?</p>
                 </button>
                 <button type="button" class="controlButton pedestrian unsolved" id="pedestrian">
-                    <math display="inline">
-                        <mi>z</mi> <mo>=</mo> <mi>?</mi>
-                    </math>
+                    <p class="doto">z = ?</p>
                 </button>
             </div>
             <div id="runSimulation">
                 <button type="button" class="playPause" id="play" disabled>
-                    &#x23F5;
+                    <!--&#x23F5;-->
+                    Test
                 </button>
                 <button type="button" class="playPause" id="reset" disabled>
                     &#x23EE;
