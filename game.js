@@ -257,7 +257,7 @@ const stopGame = function() {
     playButton.setAttribute('disabled', 'true');
     playButton.innerHTML = '<span class="material-symbols-outlined">' +
     symbolPlay + '</span>';
-    console.log("Pausing game.")
+    console.log("Stopping game.")
     return;
 }
 
@@ -382,7 +382,10 @@ playButton.addEventListener('click', () => {
     symbolPause + '</span>';
         iterateStep();
     } else {
-        stopGame();
+        isRunning = false;
+        playButton.innerHTML = '<span class="material-symbols-outlined">' +
+        symbolPlay + '</span>';
+        console.log("Pausing game.")
     }
 })
 
