@@ -4,7 +4,7 @@ let iterationCount = 0;
 const maxIterations = {
     longhorn: 25,
     pentadecathlon: 20,
-    pedestrian: 500
+    pedestrian: 200
 };
 const solutions = {
     longhorn: "x = 4",
