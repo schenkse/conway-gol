@@ -137,6 +137,7 @@ const correctGrid = function(pattern) {
         grid[iMid - 1][jMid - 4] = 1;
         grid[iMid - 1][jMid - 1] = 1;
         grid[iMid - 1][jMid + 1] = 1;
+        grid[iMid - 1][jMid + 2] = 1; // this does not belong to original longhorn
         grid[iMid - 1][jMid + 4] = 1;
         grid[iMid][jMid - 4] = 1;
         grid[iMid][jMid - 3] = 1;
