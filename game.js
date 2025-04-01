@@ -2,7 +2,7 @@ let timer;
 let updateTime = 100;
 let iterationCount = 0;
 const maxIterations = {
-    longhorn: 20,
+    longhorn: 25,
     pentadecathlon: 20,
     pedestrian: 500
 };
